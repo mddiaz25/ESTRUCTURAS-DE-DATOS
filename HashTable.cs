@@ -7,7 +7,7 @@ namespace ESTRUCTURAS_DE_DATOS;
 /// <typeparam name="TValue">Type of the value.</typeparam>
 public class HashTable<TKey, TValue> where TKey : notnull
 {
-    private readonly LinkedList<KeyValuePair<TKey, TValue>>[] _buckets;
+    private readonly LinkedList<KeyValuePair<TKey, TValue>>?[] _buckets;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="HashTable{TKey, TValue}"/> class.
@@ -21,7 +21,7 @@ public class HashTable<TKey, TValue> where TKey : notnull
             throw new ArgumentOutOfRangeException(nameof(capacity), "Capacity must be greater than zero.");
         }
 
-        _buckets = new LinkedList<KeyValuePair<TKey, TValue>>[capacity];
+        _buckets = new LinkedList<KeyValuePair<TKey, TValue>>?[capacity];
     }
 
     /// <summary>
@@ -165,7 +165,7 @@ public class HashTable<TKey, TValue> where TKey : notnull
     {
         for (var i = 0; i < _buckets.Length; i++)
         {
-            _buckets[i]?.Clear();
+            _buckets[i] = null;
         }
 
         Count = 0;
