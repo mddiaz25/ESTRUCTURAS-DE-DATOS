@@ -60,8 +60,14 @@ class TablaHash:
                 return v
         return None
 
+    def items(self):
+        for cubeta in self._cubetas:
+            for clave, valor in cubeta:
+                yield clave, valor
+
 
 def invertir_texto(texto):
+    """Invierte un texto usando una pila con fines de práctica."""
     pila = Pila()
     for caracter in texto:
         pila.apilar(caracter)
@@ -73,13 +79,9 @@ def invertir_texto(texto):
 
 
 def contar_frecuencias(elementos):
-    tabla = TablaHash(capacidad=len(elementos) * 2 + 1 if elementos else 3)
+    tabla = TablaHash(capacidad=max(3, len(elementos) + 1))
     for elemento in elementos:
         actual = tabla.obtener(elemento) or 0
         tabla.insertar(elemento, actual + 1)
 
-    frecuencias = {}
-    for cubeta in tabla._cubetas:
-        for clave, valor in cubeta:
-            frecuencias[clave] = valor
-    return frecuencias
+    return {clave: valor for clave, valor in tabla.items()}
