@@ -83,7 +83,7 @@ def invertir_texto(texto):
 
 def contar_frecuencias(elementos):
     elementos_lista = list(elementos)
-    tabla = TablaHash(capacidad=max(MIN_HASH_TABLE_CAPACITY, len(elementos_lista) + 1))
+    tabla = TablaHash(capacidad=max(MIN_HASH_TABLE_CAPACITY, len(elementos_lista)))
     for elemento in elementos_lista:
         actual = tabla.obtener(elemento) or 0
         tabla.insertar(elemento, actual + 1)
