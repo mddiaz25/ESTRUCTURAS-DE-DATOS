@@ -1,3 +1,6 @@
+MIN_HASH_TABLE_CAPACITY = 3
+
+
 class Pila:
     def __init__(self):
         self._datos = []
@@ -79,7 +82,7 @@ def invertir_texto(texto):
 
 
 def contar_frecuencias(elementos):
-    tabla = TablaHash(capacidad=max(3, len(elementos) + 1))
+    tabla = TablaHash(capacidad=max(MIN_HASH_TABLE_CAPACITY, len(elementos) + 1))
     for elemento in elementos:
         actual = tabla.obtener(elemento) or 0
         tabla.insertar(elemento, actual + 1)
